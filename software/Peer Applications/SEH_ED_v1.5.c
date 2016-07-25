@@ -14,6 +14,8 @@
 #include "msp430x22x4.h"
 #include "vlo_rand.h"
 
+#include "sht2121.h"	//sensor_libraries=libraries/sensors
+
 #define	ON                1
 #define OFF               0
 
