@@ -23,6 +23,11 @@ Peer\ Applications/SEH_ED_v1.5.obj: C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/1
 Peer\ Applications/SEH_ED_v1.5.obj: C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/Components/simpliciti/nwk/nwk_frame.h
 Peer\ Applications/SEH_ED_v1.5.obj: C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/Components/simpliciti/nwk/nwk.h
 Peer\ Applications/SEH_ED_v1.5.obj: ../Peer\ Applications/vlo_rand.h
+Peer\ Applications/SEH_ED_v1.5.obj: C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/libraries/sensors/sht21.h
+Peer\ Applications/SEH_ED_v1.5.obj: C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/libraries/comms/usci.h
+Peer\ Applications/SEH_ED_v1.5.obj: C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/libraries/comms/spi.h
+Peer\ Applications/SEH_ED_v1.5.obj: C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/libraries/comms/i2c.h
+Peer\ Applications/SEH_ED_v1.5.obj: C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/libraries/general/defs.h
 
 ../Peer\ Applications/SEH_ED_v1.5.c: 
 C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/Components/bsp/bsp.h: 
@@ -47,3 +52,8 @@ C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/Compo
 C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/Components/simpliciti/nwk/nwk_frame.h: 
 C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/Components/simpliciti/nwk/nwk.h: 
 ../Peer\ Applications/vlo_rand.h: 
+C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/libraries/sensors/sht21.h: 
+C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/libraries/comms/usci.h: 
+C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/libraries/comms/spi.h: 
+C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/libraries/comms/i2c.h: 
+C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/libraries/general/defs.h: 

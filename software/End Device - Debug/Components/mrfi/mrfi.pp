@@ -20,9 +20,7 @@ Components/mrfi/mrfi.obj: ../Components/mrfi/radios/family1/mrfi_spi.h
 Components/mrfi/mrfi.obj: ../Components/mrfi/radios/family1/../common/mrfi_f1f2.h
 Components/mrfi/mrfi.obj: C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/Components/mrfi/smartrf/CC2500/smartrf_CC2500.h
 Components/mrfi/mrfi.obj: ../Components/mrfi/radios/family1/mrfi_spi.c
-Components/mrfi/mrfi.obj: ../Components/mrfi/radios/family1/mrfi_spi.h
 Components/mrfi/mrfi.obj: ../Components/mrfi/radios/common/mrfi_f1f2.c
-Components/mrfi/mrfi.obj: ../Components/mrfi/radios/common/../family1/mrfi_spi.h
 Components/mrfi/mrfi.obj: C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/Components/bsp/boards/EZ430RF/bsp_external/mrfi_board.c
 
 ../Components/mrfi/mrfi.c: 
@@ -45,7 +43,5 @@ C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/Compo
 ../Components/mrfi/radios/family1/../common/mrfi_f1f2.h: 
 C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/Components/mrfi/smartrf/CC2500/smartrf_CC2500.h: 
 ../Components/mrfi/radios/family1/mrfi_spi.c: 
-../Components/mrfi/radios/family1/mrfi_spi.h: 
 ../Components/mrfi/radios/common/mrfi_f1f2.c: 
-../Components/mrfi/radios/common/../family1/mrfi_spi.h: 
 C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/Components/bsp/boards/EZ430RF/bsp_external/mrfi_board.c: 

@@ -98,6 +98,8 @@ S64_DEPS__QUOTED :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 . \
+libraries/sensors \
+libraries/comms \
 Peer\ Applications \
 Components/simpliciti/nwk \
 Components/simpliciti/network_applications \

@@ -14,7 +14,9 @@
 #include "msp430x22x4.h"
 #include "vlo_rand.h"
 
-#include "sht2121.h"	//sensor_libraries=libraries/sensors
+#include "sht21.h"
+#include "usci.h"
+#include "defs.h"
 
 #define	ON                1
 #define OFF               0
@@ -44,21 +46,21 @@
 
 #define port_delay        10                // 6ms - 1.5 msec
 
-#define status_one        1
-#define status_two        2
-#define status_three      3
-#define status_four       4
-#define status_five       5
-#define status_six        6
-#define status_seven      7
-
-#define timer_state_1     1
-#define timer_state_2     2
-#define timer_state_3     3
-#define timer_state_4     4
-#define timer_state_5     5
-#define timer_state_6     6
-#define timer_state_7     7
+//#define status_one        1
+//#define status_two        2
+//#define status_three      3
+//#define status_four       4
+//#define status_five       5
+//#define status_six        6
+//#define status_seven      7
+//
+//#define timer_state_1     1
+//#define timer_state_2     2
+//#define timer_state_3     3
+//#define timer_state_4     4
+//#define timer_state_5     5
+//#define timer_state_6     6
+//#define timer_state_7     7
 
 #define run_voltage       3000                // Minimum voltage to execute startup
 #define ad_check_voltage  29
@@ -155,47 +157,47 @@ unsigned int MEASURE = 1;
 // ********** ********** ********** ********** COMMS ********** ********** ********** ********** //
 
 // constants
-#define	SPI	0x01
-#define	I2C	0x02
+// #define	SPI	0x01
+// #define	I2C	0x02
 // variables
-char UCB0_MODE = 0;
+// char UCB0_MODE = 0;
 
-// ********** ********** I2C ********** **********//
-// pins
-#define SDA_PIN 		BIT1		// msp430x261x 24x UCB0SDA pin
-#define SCL_PIN 		BIT2		// msp430x261x 24x UCB0SCL pin
-
-// variables
-unsigned char I2C_TXData[2], I2C_RXData[3];	// TX and RX buffer limits
-unsigned char* I2C_TXCntr;
-unsigned char* I2C_RXCntr;
-unsigned char I2C_TXByteCtr;
-unsigned char I2C_RXByteCtr;
-unsigned char READ;// = NO;
-unsigned char Slave_Present = 2;
-unsigned char RegisterData = 0x00;
-
-// functions
-void I2C_Init(void);
-void I2C_Write_Init(void);
-void I2C_Read_Init(void);
-char I2C_Slave_Test(char Slave_Address);
-unsigned char I2C_Read_Register(unsigned char Register_Address);
-void I2C_Write_Register(char Register, char Value);
-
-// ********** ********** END OF I2C ********** **********//
+//// ********** ********** I2C ********** **********//
+//// pins
+//#define SDA_PIN 		BIT1		// msp430x261x 24x UCB0SDA pin
+//#define SCL_PIN 		BIT2		// msp430x261x 24x UCB0SCL pin
+//
+//// variables
+//unsigned char I2C_TXData[2], I2C_RXData[3];	// TX and RX buffer limits
+//unsigned char* I2C_TXCntr;
+//unsigned char* I2C_RXCntr;
+//unsigned char I2C_TXByteCtr;
+//unsigned char I2C_RXByteCtr;
+//unsigned char READ;// = NO;
+//unsigned char Slave_Present = 2;
+//unsigned char RegisterData = 0x00;
+//
+//// functions
+//void I2C_Init(void);
+//void I2C_Write_Init(void);
+//void I2C_Read_Init(void);
+//char I2C_Slave_Test(char Slave_Address);
+//unsigned char I2C_Read_Register(unsigned char Register_Address);
+//void I2C_Write_Register(char Register, char Value);
+//
+//// ********** ********** END OF I2C ********** **********//
 
 // ********** ********** SPI ********** **********//
 
-// constants
-#define nSS		BIT7		// P2.nSS used for /CS for ADXL362
-
-// variables
-unsigned char SPI_TXData[10], SPI_RXData[10];	// TX and RX buffer limits
-unsigned char* SPI_TXCntr;
-unsigned char* SPI_RXCntr;
-unsigned char SPI_TXByteCtr;
-unsigned char SPI_RXByteCtr;
+//// constants
+//#define nSS		BIT7		// P2.nSS used for /CS for ADXL362
+//
+//// variables
+//unsigned char SPI_TXData[10], SPI_RXData[10];	// TX and RX buffer limits
+//unsigned char* SPI_TXCntr;
+//unsigned char* SPI_RXCntr;
+//unsigned char SPI_TXByteCtr;
+//unsigned char SPI_RXByteCtr;
 
 unsigned char ID_adxl;
 
@@ -304,30 +306,30 @@ unsigned long ReadPressure();
 // ******************* END OF LPS25H *********************** //
 
 
-// ****************** SHT21 ****************** //
-
-// constants
-#define SHT21_SLAVE_ADDRESS	0x40	//slave address = 0b1000 000
-
-#define WRITE_USER_REGISTER	0xE6	// 0b1110’0110
-#define READ_USER_REGISTER	0xE7	// 0b1110’0111
-#define	SOFT_RESET			0xFE	//0b1111 1110
-#define	T_HOLD_MASTER		0xE3	//0b1110 0011
-#define	RH_HOLD_MASTER		0xE5	//0b1110 0101
-
-#define RES0	0x00	// resolution settings
-#define RES1	0x01	// resolution settings
-#define RES2	0x10	// resolution settings
-#define RES3	0x11	// resolution settings
-
-#define RES_UB	BIT7	// upper bit of resolution setting
-#define RES_LB	BIT0	// lower bit of resolution setting
-
-// variables
-unsigned int Humidity;
-signed int Temperature;
-
-// ****************** END OF SHT21 ****************** //
+//// ****************** SHT21 ****************** //
+//
+//// constants
+//#define SHT21_SLAVE_ADDRESS	0x40	//slave address = 0b1000 000
+//
+//#define WRITE_USER_REGISTER	0xE6	// 0b1110’0110
+//#define READ_USER_REGISTER	0xE7	// 0b1110’0111
+//#define	SOFT_RESET			0xFE	//0b1111 1110
+//#define	T_HOLD_MASTER		0xE3	//0b1110 0011
+//#define	RH_HOLD_MASTER		0xE5	//0b1110 0101
+//
+//#define RES0	0x00	// resolution settings
+//#define RES1	0x01	// resolution settings
+//#define RES2	0x10	// resolution settings
+//#define RES3	0x11	// resolution settings
+//
+//#define RES_UB	BIT7	// upper bit of resolution setting
+//#define RES_LB	BIT0	// lower bit of resolution setting
+//
+//// variables
+//unsigned int Humidity;
+//signed int Temperature;
+//
+//// ****************** END OF SHT21 ****************** //
 
 // ******************* ADXL362 *********************** //
 
@@ -485,15 +487,15 @@ int ADXL362_Present(void);
 
 
 // functions
-void SHT21_Init(void);
-void SHT21_Config(char Resolution);
-unsigned char SHT21_Read_Register(char Register);
-void SHT21_Write_Register(char Register, char Value);
-unsigned int SHT21_Read_Data(char Register);
-signed int SHT21_T_Read(void);
-unsigned int SHT21_RH_Read(void);
-signed int SHT21_T_Calib(unsigned int temp_data);
-unsigned int SHT21_RH_Calib(unsigned int hum_data);
+//void SHT21_Init(void);
+//void SHT21_Config(char Resolution);
+//unsigned char SHT21_Read_Register(char Register);
+//void SHT21_Write_Register(char Register, char Value);
+//unsigned int SHT21_Read_Data(char Register);
+//signed int SHT21_T_Read(void);
+//unsigned int SHT21_RH_Read(void);
+//signed int SHT21_T_Calib(unsigned int temp_data);
+//unsigned int SHT21_RH_Calib(unsigned int hum_data);
 
 void Set_TimerA (void);
 void Set_TimerB(void);
@@ -1346,173 +1348,173 @@ unsigned long ReadPressure()
 
 // ********** ********** END OF LPS25H ********** **********//
 
-// ********** **********  SHT21 ********** **********//
-
-// Initialise SHT21
-void SHT21_Init(void)
-{
-	// Initialise I2C
-//	USCI_MODE = I2C_Init();
-//	SHT21_Config();
-//	SHT21 remains in LPM between measurements
-}
-
-// Configure SHT21 sensor
-void SHT21_Config(char Resolution)
-{
-	unsigned char UserRegister;
-	UserRegister = 	I2C_Read_Register(READ_USER_REGISTER);
-	switch (Resolution)
-	{
-		case RES0:
-			UserRegister &= ~(RES_UB|RES_LB);		// set resolution bits to LO
-		break;
-
-		case RES1:
-			UserRegister |= RES_LB;			// LB to HI
-			UserRegister &= ~RES_UB;		// set UB to LO
-		break;
-
-		case RES2:
-			UserRegister &= ~RES_LB;		// LB to LO
-			UserRegister |= RES_UB;			// set UB to HI
-		break;
-
-		case RES3:
-			UserRegister |= (RES_UB|RES_LB);		// set resolution bits to HI
-		break;
-
-		default:
-		break;
-	}
-
-//	UserRegister |= Resolution;	// set '1' bits HIGH
+//// ********** **********  SHT21 ********** **********//
 //
-//	//UserRegister &= ~Resolution;		// set '0' bit LOW
-//	UserRegister &= (Resolution|(~(RES_UB|RES_LB)));		// set '0' bits LOW
-
-	SHT21_Write_Register(WRITE_USER_REGISTER, UserRegister);
-}
-// Read SHT21 Data
-unsigned char SHT21_Read_Register(char Register)
-{
-	unsigned char RegisterContent;
-
-	UCB0I2CSA = SHT21_SLAVE_ADDRESS;		// set I2C SA to SHT21
-
-	I2C_TXByteCtr = 1;                          // Load TX byte counter
-	I2C_RXByteCtr = 1;
-	I2C_TXCntr = I2C_TXData;
-	I2C_RXCntr = I2C_RXData;
-
-	I2C_TXData[0] = Register;
-	I2C_Write_Init();
-	READ = YES;
-	UCB0CTL1 |= UCTXSTT;// + UCTXSTP;       // I2C TX, start condition
-	__bis_SR_register(CPUOFF + GIE);        // Enter LPM0 w/ interrupts
-												// Remain in LPM0 until all data
-												// is TX'd
-	I2C_Read_Init();                      // Init I2C module for a read operation
-	UCB0CTL1 |= UCTXSTT;// + UCTXSTP;                // start condition generation
-	while (UCB0CTL1 & UCTXSTT);             // Start condition sent?
-	UCB0CTL1 |= UCTXSTP;                    // I2C stop condition
-	__bis_SR_register(CPUOFF + GIE);        // Enter LPM0 w/ interrupts
-
-	RegisterContent = I2C_RXData[0];
-	return RegisterContent;
-}
-// Write SHT21 Data
-void 	SHT21_Write_Register(char Register, char Value)
-{
-	UCB0I2CSA = SHT21_SLAVE_ADDRESS;		// set I2C SA to SHT21
-
-	I2C_TXByteCtr = 2;                          // Load TX byte counter
-	I2C_RXByteCtr = 0;
-	I2C_TXCntr = I2C_TXData;
-	I2C_RXCntr = I2C_RXData;
-
-	I2C_TXData[0] = Register;
-	I2C_TXData[1] = Value;
-	I2C_Write_Init();
-	READ = NO;
-	UCB0CTL1 |= UCTXSTT;// + UCTXSTP;       // I2C TX, start condition
-	__bis_SR_register(CPUOFF + GIE);        // Enter LPM0 w/ interrupts
-}
-// Read SHT21 Register
-unsigned int SHT21_Read_Data(char Register)
-{
-	unsigned int Data;
-
-	UCB0I2CSA = SHT21_SLAVE_ADDRESS;		// set I2C SA to SHT21
-
-	I2C_TXByteCtr = 1;                          // Load TX byte counter
-	I2C_RXByteCtr = 2;
-	I2C_TXCntr = I2C_TXData;
-	I2C_RXCntr = I2C_RXData;
-
-	I2C_TXData[0] = Register;
-	I2C_Write_Init();
-	READ = YES;
-	UCB0CTL1 |= UCTXSTT;// + UCTXSTP;       // I2C TX, start condition
-	__bis_SR_register(CPUOFF + GIE);        // Enter LPM0 w/ interrupts
-												// Remain in LPM0 until all data
-												// is TX'd
-	I2C_Read_Init();                      // Init I2C module for a read operation
-	UCB0CTL1 |= UCTXSTT;// + UCTXSTP;                // start condition generation
+//// Initialise SHT21
+//void SHT21_Init(void)
+//{
+//	// Initialise I2C
+////	USCI_MODE = I2C_Init();
+////	SHT21_Config();
+////	SHT21 remains in LPM between measurements
+//}
+//
+//// Configure SHT21 sensor
+//void SHT21_Config(char Resolution)
+//{
+//	unsigned char UserRegister;
+//	UserRegister = 	I2C_Read_Register(READ_USER_REGISTER);
+//	switch (Resolution)
+//	{
+//		case RES0:
+//			UserRegister &= ~(RES_UB|RES_LB);		// set resolution bits to LO
+//		break;
+//
+//		case RES1:
+//			UserRegister |= RES_LB;			// LB to HI
+//			UserRegister &= ~RES_UB;		// set UB to LO
+//		break;
+//
+//		case RES2:
+//			UserRegister &= ~RES_LB;		// LB to LO
+//			UserRegister |= RES_UB;			// set UB to HI
+//		break;
+//
+//		case RES3:
+//			UserRegister |= (RES_UB|RES_LB);		// set resolution bits to HI
+//		break;
+//
+//		default:
+//		break;
+//	}
+//
+////	UserRegister |= Resolution;	// set '1' bits HIGH
+////
+////	//UserRegister &= ~Resolution;		// set '0' bit LOW
+////	UserRegister &= (Resolution|(~(RES_UB|RES_LB)));		// set '0' bits LOW
+//
+//	SHT21_Write_Register(WRITE_USER_REGISTER, UserRegister);
+//}
+//// Read SHT21 Data
+//unsigned char SHT21_Read_Register(char Register)
+//{
+//	unsigned char RegisterContent;
+//
+//	UCB0I2CSA = SHT21_SLAVE_ADDRESS;		// set I2C SA to SHT21
+//
+//	I2C_TXByteCtr = 1;                          // Load TX byte counter
+//	I2C_RXByteCtr = 1;
+//	I2C_TXCntr = I2C_TXData;
+//	I2C_RXCntr = I2C_RXData;
+//
+//	I2C_TXData[0] = Register;
+//	I2C_Write_Init();
+//	READ = YES;
+//	UCB0CTL1 |= UCTXSTT;// + UCTXSTP;       // I2C TX, start condition
+//	__bis_SR_register(CPUOFF + GIE);        // Enter LPM0 w/ interrupts
+//												// Remain in LPM0 until all data
+//												// is TX'd
+//	I2C_Read_Init();                      // Init I2C module for a read operation
+//	UCB0CTL1 |= UCTXSTT;// + UCTXSTP;                // start condition generation
 //	while (UCB0CTL1 & UCTXSTT);             // Start condition sent?
 //	UCB0CTL1 |= UCTXSTP;                    // I2C stop condition
-	__bis_SR_register(CPUOFF + GIE);        // Enter LPM0 w/ interrupts
-
-	Data = ((I2C_RXData[0]<<8) + I2C_RXData[1]);
-	return Data;
-}
-
-// Read SHT21(T & RH)-> sleep SHT21
-signed int SHT21_T_Read(void)
-{
-	signed int Temperature;
-	unsigned int T_uncal;
-	T_uncal = SHT21_Read_Data(T_HOLD_MASTER);
-	T_uncal = ((I2C_RXData[0]<<8) + I2C_RXData[1]);
-	Temperature = SHT21_T_Calib(T_uncal);
-	return Temperature;
-}
-unsigned int SHT21_RH_Read(void)
-{
-	signed int Humidity;
-	unsigned int Rh_uncal;
-	Rh_uncal = SHT21_Read_Data(RH_HOLD_MASTER);
-	Rh_uncal = ((I2C_RXData[0]<<8) + I2C_RXData[1]);
-	Humidity = SHT21_RH_Calib(Rh_uncal);
-	return Humidity;
-}
-
-
-signed int SHT21_T_Calib(unsigned int temp_data)
-
-{
-  float temp;              // variable for result
-
-  temp_data &= ~0x0003;           // clear bits [1..0] (status bits)
-  //-- calculate temperature [у] --
-  temp = -46.85 + 175.72/65536 *(float)temp_data; //T= -46.85 + 175.72 * ST/2^16
-
-  return (signed int)(temp*100);
-}
-
-unsigned int SHT21_RH_Calib(unsigned int hum_data)
-
-{
-  float hum;              // variable for result
-
-  hum_data &= ~0x0003;          // clear bits [1..0] (status bits)
-  //-- calculate relative humidity [%RH] --
-  hum = -6.0 + 125.0/65536 * (float)hum_data; // RH= -6 + 125 * SRH/2^16
-
-  return (unsigned int)(hum*100);
-}
-
-// ********** **********  END OF SHT21 ********** **********//
+//	__bis_SR_register(CPUOFF + GIE);        // Enter LPM0 w/ interrupts
+//
+//	RegisterContent = I2C_RXData[0];
+//	return RegisterContent;
+//}
+//// Write SHT21 Data
+//void 	SHT21_Write_Register(char Register, char Value)
+//{
+//	UCB0I2CSA = SHT21_SLAVE_ADDRESS;		// set I2C SA to SHT21
+//
+//	I2C_TXByteCtr = 2;                          // Load TX byte counter
+//	I2C_RXByteCtr = 0;
+//	I2C_TXCntr = I2C_TXData;
+//	I2C_RXCntr = I2C_RXData;
+//
+//	I2C_TXData[0] = Register;
+//	I2C_TXData[1] = Value;
+//	I2C_Write_Init();
+//	READ = NO;
+//	UCB0CTL1 |= UCTXSTT;// + UCTXSTP;       // I2C TX, start condition
+//	__bis_SR_register(CPUOFF + GIE);        // Enter LPM0 w/ interrupts
+//}
+//// Read SHT21 Register
+//unsigned int SHT21_Read_Data(char Register)
+//{
+//	unsigned int Data;
+//
+//	UCB0I2CSA = SHT21_SLAVE_ADDRESS;		// set I2C SA to SHT21
+//
+//	I2C_TXByteCtr = 1;                          // Load TX byte counter
+//	I2C_RXByteCtr = 2;
+//	I2C_TXCntr = I2C_TXData;
+//	I2C_RXCntr = I2C_RXData;
+//
+//	I2C_TXData[0] = Register;
+//	I2C_Write_Init();
+//	READ = YES;
+//	UCB0CTL1 |= UCTXSTT;// + UCTXSTP;       // I2C TX, start condition
+//	__bis_SR_register(CPUOFF + GIE);        // Enter LPM0 w/ interrupts
+//												// Remain in LPM0 until all data
+//												// is TX'd
+//	I2C_Read_Init();                      // Init I2C module for a read operation
+//	UCB0CTL1 |= UCTXSTT;// + UCTXSTP;                // start condition generation
+////	while (UCB0CTL1 & UCTXSTT);             // Start condition sent?
+////	UCB0CTL1 |= UCTXSTP;                    // I2C stop condition
+//	__bis_SR_register(CPUOFF + GIE);        // Enter LPM0 w/ interrupts
+//
+//	Data = ((I2C_RXData[0]<<8) + I2C_RXData[1]);
+//	return Data;
+//}
+//
+//// Read SHT21(T & RH)-> sleep SHT21
+//signed int SHT21_T_Read(void)
+//{
+//	signed int Temperature;
+//	unsigned int T_uncal;
+//	T_uncal = SHT21_Read_Data(T_HOLD_MASTER);
+//	T_uncal = ((I2C_RXData[0]<<8) + I2C_RXData[1]);
+//	Temperature = SHT21_T_Calib(T_uncal);
+//	return Temperature;
+//}
+//unsigned int SHT21_RH_Read(void)
+//{
+//	signed int Humidity;
+//	unsigned int Rh_uncal;
+//	Rh_uncal = SHT21_Read_Data(RH_HOLD_MASTER);
+//	Rh_uncal = ((I2C_RXData[0]<<8) + I2C_RXData[1]);
+//	Humidity = SHT21_RH_Calib(Rh_uncal);
+//	return Humidity;
+//}
+//
+//
+//signed int SHT21_T_Calib(unsigned int temp_data)
+//
+//{
+//  float temp;              // variable for result
+//
+//  temp_data &= ~0x0003;           // clear bits [1..0] (status bits)
+//  //-- calculate temperature [у] --
+//  temp = -46.85 + 175.72/65536 *(float)temp_data; //T= -46.85 + 175.72 * ST/2^16
+//
+//  return (signed int)(temp*100);
+//}
+//
+//unsigned int SHT21_RH_Calib(unsigned int hum_data)
+//
+//{
+//  float hum;              // variable for result
+//
+//  hum_data &= ~0x0003;          // clear bits [1..0] (status bits)
+//  //-- calculate relative humidity [%RH] --
+//  hum = -6.0 + 125.0/65536 * (float)hum_data; // RH= -6 + 125 * SRH/2^16
+//
+//  return (unsigned int)(hum*100);
+//}
+//
+//// ********** **********  END OF SHT21 ********** **********//
 
 // ********** ********** ADXL362 ********** **********//
 
@@ -1755,138 +1757,138 @@ int ADXL362_Present(void)
 
 // ********** ********** ********** ********** COMMS ********** **********  ********** **********//
 
-// ********** **********  I2C ********** **********//
-
-// ****************************************** //
-// I2C_Init
-// INPUT: NONE
-// OUTPUT: NONE
-// OPERATION: Sets up UCBO for I2C communication
-// ****************************************** //
-void I2C_Init(void)
-{
-	P3OUT |= 0x01;
-	P3DIR |= 0x01;
-	// Select I2C pins, write USCI registers
-	P3SEL |= SDA_PIN + SCL_PIN;                 // Assign I2C pins to USCI
-	UCB0CTL1 = UCSWRST;                         // Enable SW reset
-	UCB0CTL0 = UCMST + UCMODE_3 + UCSYNC;       // I2C Master, synchronous mode
-	UCB0CTL1 = UCSSEL_2 + UCSWRST;              // Use SMCLK, keep SW reset
-	UCB0BR0 = 10;                         		// set prescaler (fSCL = 100kHz)
-	UCB0BR1 = 0;
-	// UCB0I2CSA = SHT21_ADDRESS;                  // set slave address
-	UCB0CTL1 &= ~UCSWRST;                       // Clear SW reset, resume operation
-//	UCB0I2CIE = UCNACKIE;
-//	IE2 |= UCB0RXIE | UCB0TXIE;                 // Enable interrupts
-}
-
-// ****************************************** //
-// SlavePresent
-// INPUT: NONE
-// OUTPUT: NONE
-// OPERATION: Pulse red light repeatedly when no slave is connected.  Otherwise pulse green 5 times.
-// ****************************************** //
-char I2C_Slave_Test(char Slave_Address){
-
-	char Slave_Present = 2;
-
-    IE2 &= ~UCB0TXIE;                       // disable Transmit ready interrupt
-    IE2 &= ~UCB0RXIE;                        // disable Receive ready interrupt
-
-	UCB0I2CSA = Slave_Address;              // set slave to test for
-	while (Slave_Present != YES)
-	{
-		UCB0CTL1 |= UCTR + UCTXSTT + UCTXSTP;       // I2C TX, start condition (Transmit mode), STOP
-		 while (UCB0CTL1 & UCTXSTP);                 // wait for STOP condition
-		 if ((UCB0STAT & UCNACKIFG)== 0)		// SLAVE PRESENT?
-		 {
-			  Slave_Present = YES;
-	          status_indicator(status_five, 0);
-		 }
-		else
-		{
-			Slave_Present = NO;
-			P1DIR |= BIT0+BIT1;			// Light LED
-			P1OUT &= ~BIT1;				// GREEN LED OFF
-			P1OUT |= BIT0;				// RED LED ON
-			delay(150);	// pause 0.1 second
-			P1OUT &= ~(BIT0);				// RED LEDs
-			delay(150);	// pause 0.1 second
-		}
-	}
-	 return Slave_Present;
-}
-
-// ****************************************** //
-// I2C_Read_Register
-// INPUT: Adress of register
-// OUTPUT: Register value (char)
-// ****************************************** //
-unsigned char I2C_Read_Register(unsigned char Register_Address)
-{
-	unsigned char Register_Content;
-
-	I2C_TXByteCtr = 1;                          // Load TX byte counter
-	I2C_RXByteCtr = 1;
-	I2C_TXCntr = I2C_TXData;
-	I2C_RXCntr = I2C_RXData;
-
-	I2C_TXData[0] = Register_Address;
-	I2C_Write_Init();
-	READ = YES;
-	__bic_SR_register(GIE);			// disable GIE so interrupt is not triggered as soon as START is sent???
-	UCB0CTL1 |= UCTXSTT;// + UCTXSTP;       // I2C TX, start condition
-	__bis_SR_register(CPUOFF + GIE);        // Enter LPM0 w/ interrupts
-												// Remain in LPM0 until all data
-												// is TX'd
-	I2C_Read_Init();                      // Init I2C module for a read operation
-	UCB0CTL1 |= UCTXSTT;// + UCTXSTP;                // start condition generation
-	while (UCB0CTL1 & UCTXSTT);             // Start condition sent?
-	UCB0CTL1 |= UCTXSTP;                    // I2C stop condition
-	__bis_SR_register(CPUOFF + GIE);        // Enter LPM0 w/ interrupts
-
-	Register_Content = I2C_RXData[0];
-	return Register_Content;
-
-}
-// Write I2C Data
-void I2C_Write_Register(char Register, char Value)
-{
-	I2C_TXByteCtr = 2;                          // Load TX byte counter
-	I2C_RXByteCtr = 0;
-	I2C_TXCntr = I2C_TXData;
-	I2C_RXCntr = I2C_RXData;
-
-	I2C_TXData[0] = Register;
-	I2C_TXData[1] = Value;
-	I2C_Write_Init();
-	READ = NO;
+//// ********** **********  I2C ********** **********//
+//
+//// ****************************************** //
+//// I2C_Init
+//// INPUT: NONE
+//// OUTPUT: NONE
+//// OPERATION: Sets up UCBO for I2C communication
+//// ****************************************** //
+//void I2C_Init(void)
+//{
+//	P3OUT |= 0x01;
+//	P3DIR |= 0x01;
+//	// Select I2C pins, write USCI registers
+//	P3SEL |= SDA_PIN + SCL_PIN;                 // Assign I2C pins to USCI
+//	UCB0CTL1 = UCSWRST;                         // Enable SW reset
+//	UCB0CTL0 = UCMST + UCMODE_3 + UCSYNC;       // I2C Master, synchronous mode
+//	UCB0CTL1 = UCSSEL_2 + UCSWRST;              // Use SMCLK, keep SW reset
+//	UCB0BR0 = 10;                         		// set prescaler (fSCL = 100kHz)
+//	UCB0BR1 = 0;
+//	// UCB0I2CSA = SHT21_ADDRESS;                  // set slave address
+//	UCB0CTL1 &= ~UCSWRST;                       // Clear SW reset, resume operation
+////	UCB0I2CIE = UCNACKIE;
+////	IE2 |= UCB0RXIE | UCB0TXIE;                 // Enable interrupts
+//}
+//
+//// ****************************************** //
+//// SlavePresent
+//// INPUT: NONE
+//// OUTPUT: NONE
+//// OPERATION: Pulse red light repeatedly when no slave is connected.  Otherwise pulse green 5 times.
+//// ****************************************** //
+//char I2C_Slave_Test(char Slave_Address){
+//
+//	char Slave_Present = 2;
+//
+//    IE2 &= ~UCB0TXIE;                       // disable Transmit ready interrupt
+//    IE2 &= ~UCB0RXIE;                        // disable Receive ready interrupt
+//
+//	UCB0I2CSA = Slave_Address;              // set slave to test for
+//	while (Slave_Present != YES)
+//	{
+//		UCB0CTL1 |= UCTR + UCTXSTT + UCTXSTP;       // I2C TX, start condition (Transmit mode), STOP
+//		 while (UCB0CTL1 & UCTXSTP);                 // wait for STOP condition
+//		 if ((UCB0STAT & UCNACKIFG)== 0)		// SLAVE PRESENT?
+//		 {
+//			  Slave_Present = YES;
+//	          status_indicator(status_five, 0);
+//		 }
+//		else
+//		{
+//			Slave_Present = NO;
+//			P1DIR |= BIT0+BIT1;			// Light LED
+//			P1OUT &= ~BIT1;				// GREEN LED OFF
+//			P1OUT |= BIT0;				// RED LED ON
+//			delay(150);	// pause 0.1 second
+//			P1OUT &= ~(BIT0);				// RED LEDs
+//			delay(150);	// pause 0.1 second
+//		}
+//	}
+//	 return Slave_Present;
+//}
+//
+//// ****************************************** //
+//// I2C_Read_Register
+//// INPUT: Adress of register
+//// OUTPUT: Register value (char)
+//// ****************************************** //
+//unsigned char I2C_Read_Register(unsigned char Register_Address)
+//{
+//	unsigned char Register_Content;
+//
+//	I2C_TXByteCtr = 1;                          // Load TX byte counter
+//	I2C_RXByteCtr = 1;
+//	I2C_TXCntr = I2C_TXData;
+//	I2C_RXCntr = I2C_RXData;
+//
+//	I2C_TXData[0] = Register_Address;
+//	I2C_Write_Init();
+//	READ = YES;
 //	__bic_SR_register(GIE);			// disable GIE so interrupt is not triggered as soon as START is sent???
-	UCB0CTL1 |= UCTXSTT;// + UCTXSTP;       // I2C TX, start condition
-	__bis_SR_register(CPUOFF + GIE);        // Enter LPM0 w/ interrupts
-}
-
-/*----------------------------------------------------------------------------*/
-// Initialization of the I2C Module for Write operation.
-void I2C_Write_Init(void)
-{
-    UCB0CTL1 |= UCTR;                       // UCTR=1 => Transmit Mode (R/W bit = 0)
-    IFG2 &= ~UCB0TXIFG;                     // Clear TXIFG flag
-    IE2 &= ~UCB0RXIE;                       // disable Receive ready interrupt
-    IE2 |= UCB0TXIE;                       // enable Transmit ready interrupt
-}
-
-/*----------------------------------------------------------------------------*/
-//   Initialization of the I2C Module for Read operation.
-void I2C_Read_Init(void)
-{
-    UCB0CTL1 &= ~UCTR;                      // UCTR=0 => Receive Mode (R/W bit = 1)
-    IFG2 &= ~UCB0RXIFG;                     // Clear RXIFG flag
-    IE2 &= ~UCB0TXIE;                       // disable Transmit ready interrupt
-    IE2 |= UCB0RXIE;                        // enable Receive ready interrupt
-}
-
-// ********** ********** END OF I2C ********** **********//
+//	UCB0CTL1 |= UCTXSTT;// + UCTXSTP;       // I2C TX, start condition
+//	__bis_SR_register(CPUOFF + GIE);        // Enter LPM0 w/ interrupts
+//												// Remain in LPM0 until all data
+//												// is TX'd
+//	I2C_Read_Init();                      // Init I2C module for a read operation
+//	UCB0CTL1 |= UCTXSTT;// + UCTXSTP;                // start condition generation
+//	while (UCB0CTL1 & UCTXSTT);             // Start condition sent?
+//	UCB0CTL1 |= UCTXSTP;                    // I2C stop condition
+//	__bis_SR_register(CPUOFF + GIE);        // Enter LPM0 w/ interrupts
+//
+//	Register_Content = I2C_RXData[0];
+//	return Register_Content;
+//
+//}
+//// Write I2C Data
+//void I2C_Write_Register(char Register, char Value)
+//{
+//	I2C_TXByteCtr = 2;                          // Load TX byte counter
+//	I2C_RXByteCtr = 0;
+//	I2C_TXCntr = I2C_TXData;
+//	I2C_RXCntr = I2C_RXData;
+//
+//	I2C_TXData[0] = Register;
+//	I2C_TXData[1] = Value;
+//	I2C_Write_Init();
+//	READ = NO;
+////	__bic_SR_register(GIE);			// disable GIE so interrupt is not triggered as soon as START is sent???
+//	UCB0CTL1 |= UCTXSTT;// + UCTXSTP;       // I2C TX, start condition
+//	__bis_SR_register(CPUOFF + GIE);        // Enter LPM0 w/ interrupts
+//}
+//
+///*----------------------------------------------------------------------------*/
+//// Initialization of the I2C Module for Write operation.
+//void I2C_Write_Init(void)
+//{
+//    UCB0CTL1 |= UCTR;                       // UCTR=1 => Transmit Mode (R/W bit = 0)
+//    IFG2 &= ~UCB0TXIFG;                     // Clear TXIFG flag
+//    IE2 &= ~UCB0RXIE;                       // disable Receive ready interrupt
+//    IE2 |= UCB0TXIE;                       // enable Transmit ready interrupt
+//}
+//
+///*----------------------------------------------------------------------------*/
+////   Initialization of the I2C Module for Read operation.
+//void I2C_Read_Init(void)
+//{
+//    UCB0CTL1 &= ~UCTR;                      // UCTR=0 => Receive Mode (R/W bit = 1)
+//    IFG2 &= ~UCB0RXIFG;                     // Clear RXIFG flag
+//    IE2 &= ~UCB0TXIE;                       // disable Transmit ready interrupt
+//    IE2 |= UCB0RXIE;                        // enable Receive ready interrupt
+//}
+//
+//// ********** ********** END OF I2C ********** **********//
 
 // ********** ********** SPI ********** **********//
 
@@ -1917,106 +1919,106 @@ void SPI_Init(void)
 // ********** ********** END OF SPI ********** **********//
 
 
-// ************************************************************************** //
-// INTERRUPT VECTORS
-// ************************************************************************** //
-
-// I2C *******************************************
-#pragma vector = USCIAB0TX_VECTOR
-__interrupt void USCIAB0TX_ISR(void)
-{
-	switch (UCB0_MODE)
-	{
-		case I2C:
-			if(UCB0TXIFG & IFG2)
-			{
-				if (I2C_TXByteCtr)                            // Check TX byte counter
-				{
-					UCB0TXBUF = *I2C_TXCntr++;                     // Load TX buffer
-					I2C_TXByteCtr--;                            // Decrement TX byte counter
-				}
-				else
-				{
-					if(READ != YES)
-					{
-						UCB0CTL1 |= UCTXSTP;                    // I2C stop condition
-					}
-
-					IFG2 &= ~UCB0TXIFG;                     // Clear USCI_B0 TX int flag
-					__bic_SR_register_on_exit(CPUOFF);      // Exit LPM0
-				}
-			}
-			else if(UCB0RXIFG & IFG2)                    // Make sure it is an RX interrupt
-			{
-				*I2C_RXCntr++ = UCB0RXBUF;               // store received data in buffer
-				I2C_RXByteCtr--;
-				if (I2C_RXByteCtr == 1)		// second to last TX
-				{
-					UCB0CTL1 |= UCTXSTP;                    // I2C stop condition
-				}
-				else if (I2C_RXByteCtr == 0)
-				{
-					IFG2 &= ~UCB0RXIFG;             // Clear RXIFG flag
-					IFG2 &= ~UCB0TXIFG;             // Clear TXIFG flag
-					IE2 &= ~UCB0TXIE;               // Disable Transmit ready interrupt
-					IE2 &= ~UCB0RXIE;               // Disable Receive ready interrupt
-					__bic_SR_register_on_exit(CPUOFF);      // Exit LPM0
-				}
-			}
-		break;
-
-		case SPI:
-			UCB0TXBUF = *SPI_TXCntr++;                     // Load TX buffer
-			SPI_TXByteCtr--;                            // Decrement TX byte counter
-			if (SPI_TXByteCtr==0)				//last byte
-			{
-				IE2 &= ~UCB0TXIE;		// Disable further interrupts
-				  __bic_SR_register_on_exit(LPM0_bits);     // Clear CPUOFF bit from 0(SR)
-			}
-		break;
-
-		default:
-		break;
-
-	}	// end of switch
-}
-
-// SPI*******************************************
-
-//// USCIAB0TX_ISR - pre-load TXByteCtr with the no. of bytes to TX before this interrupt is called
+//// ************************************************************************** //
+//// INTERRUPT VECTORS
+//// ************************************************************************** //
 //
+//// I2C *******************************************
 //#pragma vector = USCIAB0TX_VECTOR
 //__interrupt void USCIAB0TX_ISR(void)
 //{
-//	case SPI:
-//		UCB0TXBUF = *SPI_TXCntr++;                     // Load TX buffer
-//		SPI_TXByteCtr--;                            // Decrement TX byte counter
-//		if (SPI_TXByteCtr==0)				//last byte
-//		{
-//			IE2 &= ~UCB0TXIE;		// Disable further interrupts
-//			  __bic_SR_register_on_exit(LPM0_bits);     // Clear CPUOFF bit from 0(SR)
-//		}
-//	break;
+//	switch (UCB0_MODE)
+//	{
+//		case I2C:
+//			if(UCB0TXIFG & IFG2)
+//			{
+//				if (I2C_TXByteCtr)                            // Check TX byte counter
+//				{
+//					UCB0TXBUF = *I2C_TXCntr++;                     // Load TX buffer
+//					I2C_TXByteCtr--;                            // Decrement TX byte counter
+//				}
+//				else
+//				{
+//					if(READ != YES)
+//					{
+//						UCB0CTL1 |= UCTXSTP;                    // I2C stop condition
+//					}
+//
+//					IFG2 &= ~UCB0TXIFG;                     // Clear USCI_B0 TX int flag
+//					__bic_SR_register_on_exit(CPUOFF);      // Exit LPM0
+//				}
+//			}
+//			else if(UCB0RXIFG & IFG2)                    // Make sure it is an RX interrupt
+//			{
+//				*I2C_RXCntr++ = UCB0RXBUF;               // store received data in buffer
+//				I2C_RXByteCtr--;
+//				if (I2C_RXByteCtr == 1)		// second to last TX
+//				{
+//					UCB0CTL1 |= UCTXSTP;                    // I2C stop condition
+//				}
+//				else if (I2C_RXByteCtr == 0)
+//				{
+//					IFG2 &= ~UCB0RXIFG;             // Clear RXIFG flag
+//					IFG2 &= ~UCB0TXIFG;             // Clear TXIFG flag
+//					IE2 &= ~UCB0TXIE;               // Disable Transmit ready interrupt
+//					IE2 &= ~UCB0RXIE;               // Disable Receive ready interrupt
+//					__bic_SR_register_on_exit(CPUOFF);      // Exit LPM0
+//				}
+//			}
+//		break;
+//
+//		case SPI:
+//			UCB0TXBUF = *SPI_TXCntr++;                     // Load TX buffer
+//			SPI_TXByteCtr--;                            // Decrement TX byte counter
+//			if (SPI_TXByteCtr==0)				//last byte
+//			{
+//				IE2 &= ~UCB0TXIE;		// Disable further interrupts
+//				  __bic_SR_register_on_exit(LPM0_bits);     // Clear CPUOFF bit from 0(SR)
+//			}
+//		break;
+//
+//		default:
+//		break;
+//
+//	}	// end of switch
 //}
-
-//----------------------------------------------------------------------
- // ISR for USCI_A,B0 RX: store data, return when all bytes received
- //----------------------------------------------------------------------
- #pragma vector = USCIAB0RX_VECTOR
- __interrupt void USCIAB0RX_ISR (void)	// Acknowledge by read of RXBUF
- {
- 	*SPI_RXCntr++ = UCB0RXBUF;	// Store recd data, update counter
- 	SPI_RXByteCtr--;
- 	if (SPI_RXByteCtr)
- 	{
- 		UCB0TXBUF = 0x00;
- 	}
- 	else
- 	{		// Received complete message?
- 		IE2 &= ~UCB0RXIE;		// Disable further interrupts
- 		  __bic_SR_register_on_exit(LPM0_bits);     // Clear CPUOFF bit from 0(SR)
- 	}
- }
+//
+//// SPI*******************************************
+//
+////// USCIAB0TX_ISR - pre-load TXByteCtr with the no. of bytes to TX before this interrupt is called
+////
+////#pragma vector = USCIAB0TX_VECTOR
+////__interrupt void USCIAB0TX_ISR(void)
+////{
+////	case SPI:
+////		UCB0TXBUF = *SPI_TXCntr++;                     // Load TX buffer
+////		SPI_TXByteCtr--;                            // Decrement TX byte counter
+////		if (SPI_TXByteCtr==0)				//last byte
+////		{
+////			IE2 &= ~UCB0TXIE;		// Disable further interrupts
+////			  __bic_SR_register_on_exit(LPM0_bits);     // Clear CPUOFF bit from 0(SR)
+////		}
+////	break;
+////}
+//
+////----------------------------------------------------------------------
+// // ISR for USCI_A,B0 RX: store data, return when all bytes received
+// //----------------------------------------------------------------------
+// #pragma vector = USCIAB0RX_VECTOR
+// __interrupt void USCIAB0RX_ISR (void)	// Acknowledge by read of RXBUF
+// {
+// 	*SPI_RXCntr++ = UCB0RXBUF;	// Store recd data, update counter
+// 	SPI_RXByteCtr--;
+// 	if (SPI_RXByteCtr)
+// 	{
+// 		UCB0TXBUF = 0x00;
+// 	}
+// 	else
+// 	{		// Received complete message?
+// 		IE2 &= ~UCB0RXIE;		// Disable further interrupts
+// 		  __bic_SR_register_on_exit(LPM0_bits);     // Clear CPUOFF bit from 0(SR)
+// 	}
+// }
 
  // Timer
  void Set_TimerB(void)
