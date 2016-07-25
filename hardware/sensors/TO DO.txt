@@ -1,0 +1,2 @@
+sensor_board
+	Amend connector - female and amend pins - reverse sided
