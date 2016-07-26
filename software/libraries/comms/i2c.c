@@ -6,6 +6,8 @@
  */
 
 #include "i2c.h"
+#include "defs.h"
+#include "gen_func_set.h"
 
 
 unsigned char Slave_Present = 2;

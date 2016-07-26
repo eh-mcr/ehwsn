@@ -8,7 +8,13 @@ CG_TOOL_ROOT := c:/ti/ccsv6/tools/compiler/msp430_4.3.5
 
 ORDERED_OBJS += \
 $(GEN_CMDS__FLAG) \
+"./libraries/sensors/adc_func_set.obj" \
+"./libraries/sensors/adxl362.obj" \
+"./libraries/sensors/lps25h.obj" \
+"./libraries/sensors/oa_func_set.obj" \
+"./libraries/sensors/pd_func_set.obj" \
 "./libraries/sensors/sht21.obj" \
+"./libraries/general/gen_func_set.obj" \
 "./libraries/comms/i2c.obj" \
 "./libraries/comms/spi.obj" \
 "./libraries/comms/usci.obj" \
@@ -40,6 +46,7 @@ RMDIR := RMDIR /S/Q
 -include sources.mk
 -include subdir_vars.mk
 -include libraries/sensors/subdir_vars.mk
+-include libraries/general/subdir_vars.mk
 -include libraries/comms/subdir_vars.mk
 -include Peer\ Applications/subdir_vars.mk
 -include Components/simpliciti/nwk/subdir_vars.mk
@@ -48,6 +55,7 @@ RMDIR := RMDIR /S/Q
 -include Components/bsp/subdir_vars.mk
 -include subdir_rules.mk
 -include libraries/sensors/subdir_rules.mk
+-include libraries/general/subdir_rules.mk
 -include libraries/comms/subdir_rules.mk
 -include Peer\ Applications/subdir_rules.mk
 -include Components/simpliciti/nwk/subdir_rules.mk
@@ -161,8 +169,9 @@ APasdatahub.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "libraries\sensors\sht21.pp" "libraries\comms\i2c.pp" "libraries\comms\spi.pp" "libraries\comms\usci.pp" "Peer Applications\SEH_ED_v1.5.pp" "Components\simpliciti\nwk\nwk.pp" "Components\simpliciti\nwk\nwk_QMgmt.pp" "Components\simpliciti\nwk\nwk_api.pp" "Components\simpliciti\nwk\nwk_frame.pp" "Components\simpliciti\nwk\nwk_globals.pp" "Components\simpliciti\network_applications\nwk_freq.pp" "Components\simpliciti\network_applications\nwk_ioctl.pp" "Components\simpliciti\network_applications\nwk_join.pp" "Components\simpliciti\network_applications\nwk_link.pp" "Components\simpliciti\network_applications\nwk_mgmt.pp" "Components\simpliciti\network_applications\nwk_ping.pp" "Components\simpliciti\network_applications\nwk_security.pp" "Components\mrfi\mrfi.pp" "Components\bsp\bsp.pp" 
-	-$(RM) "libraries\sensors\sht21.obj" "libraries\comms\i2c.obj" "libraries\comms\spi.obj" "libraries\comms\usci.obj" "Peer Applications\SEH_ED_v1.5.obj" "Peer Applications\vlo_rand.obj" "Components\simpliciti\nwk\nwk.obj" "Components\simpliciti\nwk\nwk_QMgmt.obj" "Components\simpliciti\nwk\nwk_api.obj" "Components\simpliciti\nwk\nwk_frame.obj" "Components\simpliciti\nwk\nwk_globals.obj" "Components\simpliciti\network_applications\nwk_freq.obj" "Components\simpliciti\network_applications\nwk_ioctl.obj" "Components\simpliciti\network_applications\nwk_join.obj" "Components\simpliciti\network_applications\nwk_link.obj" "Components\simpliciti\network_applications\nwk_mgmt.obj" "Components\simpliciti\network_applications\nwk_ping.obj" "Components\simpliciti\network_applications\nwk_security.obj" "Components\mrfi\mrfi.obj" "Components\bsp\bsp.obj" 
+	-$(RM) "libraries\sensors\adc_func_set.pp" "libraries\sensors\adxl362.pp" "libraries\sensors\lps25h.pp" "libraries\sensors\oa_func_set.pp" "libraries\sensors\pd_func_set.pp" "libraries\sensors\sht21.pp" "libraries\general\gen_func_set.pp" "libraries\comms\i2c.pp" "libraries\comms\spi.pp" "libraries\comms\usci.pp" "Peer Applications\SEH_ED_v1.5.pp" "Components\simpliciti\nwk\nwk.pp" "Components\simpliciti\nwk\nwk_QMgmt.pp" "Components\simpliciti\nwk\nwk_api.pp" "Components\simpliciti\nwk\nwk_frame.pp" "Components\simpliciti\nwk\nwk_globals.pp" "Components\simpliciti\network_applications\nwk_freq.pp" "Components\simpliciti\network_applications\nwk_ioctl.pp" "Components\simpliciti\network_applications\nwk_join.pp" "Components\simpliciti\network_applications\nwk_link.pp" "Components\simpliciti\network_applications\nwk_mgmt.pp" "Components\simpliciti\network_applications\nwk_ping.pp" "Components\simpliciti\network_applications\nwk_security.pp" "Components\mrfi\mrfi.pp" "Components\bsp\bsp.pp" 
+	-$(RM) "libraries\sensors\adc_func_set.obj" "libraries\sensors\adxl362.obj" "libraries\sensors\lps25h.obj" "libraries\sensors\oa_func_set.obj" "libraries\sensors\pd_func_set.obj" "libraries\sensors\sht21.obj" "libraries\general\gen_func_set.obj" "libraries\comms\i2c.obj" "libraries\comms\spi.obj" "libraries\comms\usci.obj" "Peer Applications\SEH_ED_v1.5.obj" "Peer Applications\vlo_rand.obj" "Components\simpliciti\nwk\nwk.obj" "Components\simpliciti\nwk\nwk_QMgmt.obj" "Components\simpliciti\nwk\nwk_api.obj" "Components\simpliciti\nwk\nwk_frame.obj" "Components\simpliciti\nwk\nwk_globals.obj" "Components\simpliciti\network_applications\nwk_freq.obj" "Components\simpliciti\network_applications\nwk_ioctl.obj" "Components\simpliciti\network_applications\nwk_join.obj" "Components\simpliciti\network_applications\nwk_link.obj" "Components\simpliciti\network_applications\nwk_mgmt.obj" "Components\simpliciti\network_applications\nwk_ping.obj" "Components\simpliciti\network_applications\nwk_security.obj" 
+	-$(RM) "Components\mrfi\mrfi.obj" "Components\bsp\bsp.obj" 
 	-$(RM) "Peer Applications\vlo_rand.pp" 
 	-@echo 'Finished clean'
 	-@echo ' '

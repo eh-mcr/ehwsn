@@ -99,6 +99,7 @@ S64_DEPS__QUOTED :=
 SUBDIRS := \
 . \
 libraries/sensors \
+libraries/general \
 libraries/comms \
 Peer\ Applications \
 Components/simpliciti/nwk \
