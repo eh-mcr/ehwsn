@@ -11,6 +11,9 @@
 #include "sht21.h"
 #include "lps25h.h"
 #include "adxl362.h"
+#include "adc_func_set.h"
+#include "oa_func_set.h"
+#include "pd_func_set.h"
 
 unsigned int Vcc_last;
 signed int Temperature_last;

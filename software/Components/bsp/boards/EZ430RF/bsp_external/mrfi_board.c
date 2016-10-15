@@ -48,6 +48,9 @@
  */
 #include "bsp.h"
 #include "mrfi_defs.h"
+#include "adxl362.h"
+#include "gen_func_set.h"
+#include "defs.h"
 
 
 /**************************************************************************************************
@@ -66,7 +69,21 @@ BSP_ISR_FUNCTION( BSP_GpioPort1Isr, PORT2_VECTOR )
    *  This ISR is easily replaced.  The new ISR must simply
    *  include the following function call.
    */
-  MRFI_GpioIsr();
+
+    if(P2IFG & ADXL362INT)
+    {
+        P2IFG &= ~ADXL362INT;
+
+        NodeStatus |= Pending;      // schedule a new measurement
+        DataInterruptSource |= Shock;   // tell the node that a shock has occured
+        NodeStatus |= Awake;    // awake the node (may already be awake)
+
+        __bic_SR_register_on_exit(LPM3_bits);
+    }
+    else
+    {
+        MRFI_GpioIsr();
+    }
 }
 
 

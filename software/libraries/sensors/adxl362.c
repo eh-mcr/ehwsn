@@ -23,10 +23,14 @@ void ADXL362_Init(void)
 	ADXL362_Config();
 	// Set ADCL362 to sleep mode
 	ADXL362_Sleep();
+	ADXL362_Interrupts_Init();    // set up interrupt pin
 }
 void ADXL362_Interrupts_Init(void)
 {
-
+    P2DIR &= ~ADXL362INT;   // INPUT
+    P2DIR &= ~ADXL362INT;    // LO
+    // P2IES |=    P2DIR &= ~ADXL362INT;   // ENABLE INTERRUPTS
+    // P2IE..   // HI-Lo transition??
 }
 unsigned char ADXL362_ReadID(void)
 {

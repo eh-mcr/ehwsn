@@ -24,6 +24,8 @@
 #define Pending 	BIT1	// used to indicate measurement pending status of node within NodeStatus
 #define InMeasurement	BIT2	// set to indicate that the node is currently performing a measurement
 
+// DataInterruptSource fields
+#define Shock   BIT0
 
 
 // general

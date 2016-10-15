@@ -469,3 +469,17 @@ __interrupt void Port_1(void)
   while(!(P1IN & 0x04));                    // Loop if button is still pressed
   P1IFG &= ~0x04;                           // P1.2 IFG cleared key interuped
 }
+
+/*******************************************************************************
+* BEGHDR
+* NAME:        __interrupt void Port_2(void)
+* DESCRIPTION: Port 2 interrupt service routine function key
+* INPUTS:      void
+* PROCESSING:  accelerometer movement interrupt
+* OUTPUTS:     void
+********************************************************************************/
+//#pragma vector=PORT2_VECTOR
+//__interrupt void Port_2(void)
+//{
+    // code is within the
+//}

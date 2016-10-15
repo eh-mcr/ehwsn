@@ -4143,6 +4143,7 @@ manufacturer Siemens</description>
 <part name="JP18" library="SparkFun-Connectors" deviceset="M04" device="PTH"/>
 <part name="JP19" library="SparkFun-Connectors" deviceset="M04" device="PTH"/>
 <part name="JP2" library="SparkFun-Connectors" deviceset="M05" device="PTH"/>
+<part name="VOUT-VCC" library="SparkFun-Connectors" deviceset="M02" device="PTH"/>
 </parts>
 <sheets>
 <sheet>
@@ -4179,6 +4180,7 @@ manufacturer Siemens</description>
 <instance part="JP18" gate="G$1" x="10.16" y="-53.34"/>
 <instance part="JP19" gate="G$1" x="10.16" y="-71.12"/>
 <instance part="JP2" gate="G$1" x="-93.98" y="63.5"/>
+<instance part="VOUT-VCC" gate="G$1" x="-43.18" y="-93.98"/>
 </instances>
 <busses>
 </busses>
@@ -4346,14 +4348,9 @@ manufacturer Siemens</description>
 <label x="-86.36" y="86.36" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="JP19" gate="G$1" pin="2"/>
-<wire x1="15.24" y1="-71.12" x2="25.4" y2="-71.12" width="0.1524" layer="91"/>
-<label x="15.24" y="-71.12" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="JP18" gate="G$1" pin="2"/>
-<wire x1="15.24" y1="-53.34" x2="25.4" y2="-53.34" width="0.1524" layer="91"/>
-<label x="15.24" y="-53.34" size="1.778" layer="95"/>
+<wire x1="-35.56" y1="-91.44" x2="-22.86" y2="-91.44" width="0.1524" layer="91"/>
+<label x="-33.02" y="-91.44" size="1.778" layer="95"/>
+<pinref part="VOUT-VCC" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="VBAT_OK" class="0">
@@ -4661,6 +4658,23 @@ manufacturer Siemens</description>
 <pinref part="JP19" gate="G$1" pin="4"/>
 <wire x1="15.24" y1="-66.04" x2="25.4" y2="-66.04" width="0.1524" layer="91"/>
 <label x="15.24" y="-66.04" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="VCC" class="0">
+<segment>
+<pinref part="JP19" gate="G$1" pin="2"/>
+<wire x1="15.24" y1="-71.12" x2="25.4" y2="-71.12" width="0.1524" layer="91"/>
+<label x="15.24" y="-71.12" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="JP18" gate="G$1" pin="2"/>
+<wire x1="15.24" y1="-53.34" x2="25.4" y2="-53.34" width="0.1524" layer="91"/>
+<label x="15.24" y="-53.34" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="VOUT-VCC" gate="G$1" pin="1"/>
+<wire x1="-22.86" y1="-93.98" x2="-35.56" y2="-93.98" width="0.1524" layer="91"/>
+<label x="-33.02" y="-93.98" size="1.778" layer="95"/>
 </segment>
 </net>
 </nets>

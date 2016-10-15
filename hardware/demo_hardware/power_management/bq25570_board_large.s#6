@@ -2853,7 +2853,7 @@ manufacturer Siemens</description>
 <part name="R8" library="SparkFun-Resistors" deviceset="1KOHM-1/4W-1%(PTH)" device="" value="6.98M"/>
 <part name="R7" library="SparkFun-Resistors" deviceset="1KOHM-1/4W-1%(PTH)" device="" value="5.36M"/>
 <part name="R9" library="SparkFun-Resistors" deviceset="1KOHM-1/4W-1%(PTH)" device="" value="887k"/>
-<part name="C3" library="SparkFun-Capacitors" deviceset="CAP" device="EZ" value="100uF"/>
+<part name="C3" library="SparkFun-Capacitors" deviceset="CAP" device="EZ" value="4.7uF"/>
 <part name="C6" library="SparkFun-Capacitors" deviceset="CAP" device="EZ" value="22uF"/>
 <part name="C4" library="SparkFun-Capacitors" deviceset="CAP" device="EZ" value="4.7uF"/>
 <part name="C5" library="SparkFun-Capacitors" deviceset="CAP" device="EZ" value="0.1uF"/>
@@ -3228,13 +3228,13 @@ manufacturer Siemens</description>
 <wire x1="-86.36" y1="81.28" x2="-73.66" y2="81.28" width="0.1524" layer="91"/>
 <label x="-86.36" y="81.28" size="1.778" layer="95"/>
 </segment>
-</net>
-<net name="VBAT" class="0">
 <segment>
 <wire x1="58.42" y1="93.98" x2="71.12" y2="93.98" width="0.1524" layer="91"/>
 <label x="60.96" y="93.98" size="1.778" layer="95"/>
 <pinref part="C3" gate="G$1" pin="1"/>
 </segment>
+</net>
+<net name="VBAT" class="0">
 <segment>
 <wire x1="-12.7" y1="45.72" x2="-12.7" y2="60.96" width="0.1524" layer="91"/>
 <label x="-12.7" y="45.72" size="1.778" layer="95" rot="R90"/>

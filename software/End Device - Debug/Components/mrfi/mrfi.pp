@@ -22,6 +22,9 @@ Components/mrfi/mrfi.obj: C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Develo
 Components/mrfi/mrfi.obj: ../Components/mrfi/radios/family1/mrfi_spi.c
 Components/mrfi/mrfi.obj: ../Components/mrfi/radios/common/mrfi_f1f2.c
 Components/mrfi/mrfi.obj: C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/Components/bsp/boards/EZ430RF/bsp_external/mrfi_board.c
+Components/mrfi/mrfi.obj: C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/libraries/sensors/adxl362.h
+Components/mrfi/mrfi.obj: C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/libraries/general/gen_func_set.h
+Components/mrfi/mrfi.obj: C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/libraries/general/defs.h
 
 ../Components/mrfi/mrfi.c: 
 ../Components/mrfi/mrfi_defs.h: 
@@ -45,3 +48,6 @@ C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/Compo
 ../Components/mrfi/radios/family1/mrfi_spi.c: 
 ../Components/mrfi/radios/common/mrfi_f1f2.c: 
 C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/Components/bsp/boards/EZ430RF/bsp_external/mrfi_board.c: 
+C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/libraries/sensors/adxl362.h: 
+C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/libraries/general/gen_func_set.h: 
+C:/Users/Ralph\ S-J/Dropbox/02\ UNIVERSITY/100\ Development/ehwsn/software/libraries/general/defs.h: 

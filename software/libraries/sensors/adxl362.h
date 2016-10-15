@@ -10,6 +10,9 @@
 
 // ******************* ADXL362 *********************** //
 
+#define ADXL362INT  BIT0    // use P2.ADXL362INT as interrupt pin this is used with mrfi_board.c
+
+
 // constants
 /* --- command --- */
 #define XL362_REG_WRITE			0x0A
@@ -146,6 +149,7 @@ extern unsigned char ID_adxl;
 
 // functions
 void ADXL362_Init(void);
+void ADXL362_Interrupts_Init(void);
 unsigned char ADXL362_ReadID(void);
 unsigned char ADXL362_Read_Register(char Register);
 void ADXL362_Write_Register(char Register, char Value);

@@ -18,5 +18,8 @@ extern unsigned char* SPI_RXCntr;
 extern unsigned char SPI_TXByteCtr;
 extern unsigned char SPI_RXByteCtr;
 
+void SPI_Init(void);        // Initialise SPI (for ADXL362)
+
+
 
 #endif /* SPI_H_ */
