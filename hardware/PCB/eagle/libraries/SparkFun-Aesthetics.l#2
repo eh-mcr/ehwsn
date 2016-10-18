@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="yes" active="yes"/>
@@ -68638,16 +68638,16 @@ Two of these half tabs, rotated in opposite directions, can be connected togethe
 <wire x1="0" y1="22.86" x2="0" y2="35.56" width="0.254" layer="94"/>
 <wire x1="101.6" y1="22.86" x2="101.6" y2="15.24" width="0.254" layer="94"/>
 <text x="1.27" y="1.27" size="2.54" layer="94" font="vector">Date:</text>
-<text x="12.7" y="1.27" size="2.54" layer="94" font="vector">18/10/2016</text>
+<text x="12.7" y="1.27" size="2.54" layer="94" font="vector">&gt;LAST_DATE_TIME</text>
 <text x="72.39" y="1.27" size="2.54" layer="94" font="vector">Sheet:</text>
-<text x="86.36" y="1.27" size="2.54" layer="94" font="vector">1</text>
-<text x="88.9" y="11.43" size="2.54" layer="94" font="vector">REV: 0</text>
+<text x="86.36" y="1.27" size="2.54" layer="94" font="vector">&gt;SHEET</text>
+<text x="88.9" y="11.43" size="2.54" layer="94" font="vector">REV:</text>
 <text x="1.524" y="17.78" size="2.54" layer="94" font="vector">TITLE:</text>
-<text x="15.494" y="17.78" size="2.7432" layer="94" font="vector">Sensor Node</text>
+<text x="15.494" y="17.78" size="2.7432" layer="94" font="vector">&gt;DRAWING_NAME</text>
 <text x="2.54" y="31.75" size="1.9304" layer="94">Released under the Creative Commons</text>
 <text x="2.54" y="27.94" size="1.9304" layer="94">Attribution Share-Alike 4.0 License</text>
 <text x="2.54" y="24.13" size="1.9304" layer="94"> https://creativecommons.org/licenses/by-sa/4.0/</text>
-<text x="1.27" y="11.43" size="2.54" layer="94">Design by: Ralph Stevenson-Jones</text>
+<text x="1.27" y="11.43" size="2.54" layer="94">Design by:</text>
 </symbol>
 <symbol name="GND_CONNECT">
 <wire x1="5.08" y1="10.16" x2="5.08" y2="-5.08" width="0.254" layer="94"/>
@@ -95054,7 +95054,7 @@ Standard 8.5x11 US Letter frame</description>
 <device name="" package="CREATIVE_COMMONS">
 <technologies>
 <technology name="">
-<attribute name="DESIGNER" value="Ralph Stevenson-Jones" constant="no"/>
+<attribute name="DESIGNER" value="NAME" constant="no"/>
 <attribute name="VERSION" value="v01" constant="no"/>
 </technology>
 </technologies>

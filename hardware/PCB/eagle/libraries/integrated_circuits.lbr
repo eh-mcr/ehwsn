@@ -1087,7 +1087,7 @@ S-PVQFN-N20</description>
 <gate name="G$1" symbol="SHT21_SYMBOL" x="0" y="0"/>
 </gates>
 <devices>
-<device name="SHT21_PADS" package="SHT21">
+<device name="!" package="SHT21">
 <connects>
 <connect gate="G$1" pin="DIE_PAD" pad="DIE_PAD"/>
 <connect gate="G$1" pin="GND" pad="2"/>
