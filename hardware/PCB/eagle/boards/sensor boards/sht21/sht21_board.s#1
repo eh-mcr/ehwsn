@@ -133,90 +133,6 @@
 </layers>
 <schematic xreflabel="%F%N/%S.%C%R" xrefpart="/%S.%C%R">
 <libraries>
-<library name="sensors">
-<packages>
-<package name="SHT21">
-<smd name="DIE_PAD" x="0.03" y="0.06" dx="2.4" dy="1.5" layer="1" rot="R90"/>
-<wire x1="-1.52" y1="1.56" x2="-1.52" y2="-1.44" width="0.127" layer="21"/>
-<wire x1="-1.52" y1="-1.44" x2="1.53" y2="-1.44" width="0.127" layer="21"/>
-<wire x1="1.53" y1="-1.44" x2="1.53" y2="1.56" width="0.127" layer="21"/>
-<wire x1="1.53" y1="1.56" x2="-1.52" y2="1.56" width="0.127" layer="21"/>
-<smd name="1" x="1.43" y="-0.94" dx="0.4" dy="0.6" layer="1" rot="R90"/>
-<smd name="2" x="1.43" y="0.06" dx="0.4" dy="0.6" layer="1" rot="R90"/>
-<smd name="3" x="1.43" y="1.06" dx="0.4" dy="0.6" layer="1" rot="R90"/>
-<smd name="6" x="-1.37" y="-0.94" dx="0.4" dy="0.6" layer="1" rot="R270"/>
-<smd name="5" x="-1.37" y="0.06" dx="0.4" dy="0.6" layer="1" rot="R90"/>
-<smd name="4" x="-1.37" y="1.06" dx="0.4" dy="0.6" layer="1" rot="R90"/>
-<text x="-1.47" y="2.37" size="1.27" layer="25">SHT21</text>
-</package>
-<package name="SHT21_PADS">
-<smd name="DIE_PAD" x="1.5" y="1.5" dx="2.4" dy="1.5" layer="1" rot="R90"/>
-<wire x1="-0.05" y1="3" x2="-0.05" y2="0" width="0.127" layer="21"/>
-<wire x1="-0.05" y1="0" x2="3" y2="0" width="0.127" layer="21"/>
-<wire x1="3" y1="0" x2="3" y2="3" width="0.127" layer="21"/>
-<wire x1="3" y1="3" x2="-0.05" y2="3" width="0.127" layer="21"/>
-<smd name="1" x="2.9" y="0.5" dx="0.4" dy="0.6" layer="1" rot="R90"/>
-<smd name="2" x="2.9" y="1.5" dx="0.4" dy="0.6" layer="1" rot="R90"/>
-<smd name="3" x="2.9" y="2.5" dx="0.4" dy="0.6" layer="1" rot="R90"/>
-<smd name="6" x="0.1" y="0.5" dx="0.4" dy="0.6" layer="1" rot="R270"/>
-<smd name="5" x="0.1" y="1.5" dx="0.4" dy="0.6" layer="1" rot="R90"/>
-<smd name="4" x="0.1" y="2.5" dx="0.4" dy="0.6" layer="1" rot="R90"/>
-<text x="0" y="3.81" size="1.27" layer="25">SHT21</text>
-</package>
-</packages>
-<symbols>
-<symbol name="SHT21_SYMBOL">
-<pin name="SCL" x="-5.08" y="2.54" length="middle"/>
-<pin name="VDD" x="-5.08" y="5.08" length="middle"/>
-<pin name="RES1" x="-5.08" y="7.62" length="middle"/>
-<pin name="RES" x="20.32" y="7.62" length="middle" rot="R180"/>
-<pin name="GND" x="20.32" y="5.08" length="middle" rot="R180"/>
-<pin name="SDA" x="20.32" y="2.54" length="middle" rot="R180"/>
-<wire x1="0" y1="0" x2="15.24" y2="0" width="0.254" layer="94"/>
-<wire x1="15.24" y1="0" x2="15.24" y2="10.16" width="0.254" layer="94"/>
-<wire x1="15.24" y1="10.16" x2="0" y2="10.16" width="0.254" layer="94"/>
-<wire x1="0" y1="10.16" x2="0" y2="0" width="0.254" layer="94"/>
-<pin name="DIE_PAD" x="7.62" y="-5.08" length="middle" rot="R90"/>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="SHT21">
-<gates>
-<gate name="G$1" symbol="SHT21_SYMBOL" x="0" y="0"/>
-</gates>
-<devices>
-<device name="SHT21_PADS" package="SHT21_PADS">
-<connects>
-<connect gate="G$1" pin="DIE_PAD" pad="DIE_PAD"/>
-<connect gate="G$1" pin="GND" pad="2"/>
-<connect gate="G$1" pin="RES" pad="3"/>
-<connect gate="G$1" pin="RES1" pad="4"/>
-<connect gate="G$1" pin="SCL" pad="6"/>
-<connect gate="G$1" pin="SDA" pad="1"/>
-<connect gate="G$1" pin="VDD" pad="5"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="SHT21" package="SHT21">
-<connects>
-<connect gate="G$1" pin="DIE_PAD" pad="DIE_PAD"/>
-<connect gate="G$1" pin="GND" pad="2"/>
-<connect gate="G$1" pin="RES" pad="3"/>
-<connect gate="G$1" pin="RES1" pad="4"/>
-<connect gate="G$1" pin="SCL" pad="6"/>
-<connect gate="G$1" pin="SDA" pad="1"/>
-<connect gate="G$1" pin="VDD" pad="5"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 <library name="SparkFun-Connectors">
 <description>&lt;h3&gt;SparkFun Electronics' preferred foot prints&lt;/h3&gt;
 In this library you'll find connectors and sockets- basically anything that can be plugged into or onto.&lt;br&gt;&lt;br&gt;
@@ -1089,6 +1005,62 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="integrated_circuits">
+<packages>
+<package name="SHT21">
+<smd name="DIE_PAD" x="0" y="0" dx="2.4" dy="1.5" layer="1" rot="R90"/>
+<wire x1="-1.55" y1="1.5" x2="-1.55" y2="-1.5" width="0.127" layer="21"/>
+<wire x1="-1.55" y1="-1.5" x2="1.5" y2="-1.5" width="0.127" layer="21"/>
+<wire x1="1.5" y1="-1.5" x2="1.5" y2="1.5" width="0.127" layer="21"/>
+<wire x1="1.5" y1="1.5" x2="-1.55" y2="1.5" width="0.127" layer="21"/>
+<smd name="1" x="1.4" y="-1" dx="0.4" dy="0.6" layer="1" rot="R90"/>
+<smd name="2" x="1.4" y="0" dx="0.4" dy="0.6" layer="1" rot="R90"/>
+<smd name="3" x="1.4" y="1" dx="0.4" dy="0.6" layer="1" rot="R90"/>
+<smd name="6" x="-1.4" y="-1" dx="0.4" dy="0.6" layer="1" rot="R270"/>
+<smd name="5" x="-1.4" y="0" dx="0.4" dy="0.6" layer="1" rot="R90"/>
+<smd name="4" x="-1.4" y="1" dx="0.4" dy="0.6" layer="1" rot="R90"/>
+<text x="-1.5" y="2.31" size="1.27" layer="25">SHT21</text>
+</package>
+</packages>
+<symbols>
+<symbol name="SHT21_SYMBOL">
+<pin name="SCL" x="-5.08" y="2.54" length="middle"/>
+<pin name="VDD" x="-5.08" y="5.08" length="middle"/>
+<pin name="RES1" x="-5.08" y="7.62" length="middle"/>
+<pin name="RES" x="20.32" y="7.62" length="middle" rot="R180"/>
+<pin name="GND" x="20.32" y="5.08" length="middle" rot="R180"/>
+<pin name="SDA" x="20.32" y="2.54" length="middle" rot="R180"/>
+<wire x1="0" y1="0" x2="15.24" y2="0" width="0.254" layer="94"/>
+<wire x1="15.24" y1="0" x2="15.24" y2="10.16" width="0.254" layer="94"/>
+<wire x1="15.24" y1="10.16" x2="0" y2="10.16" width="0.254" layer="94"/>
+<wire x1="0" y1="10.16" x2="0" y2="0" width="0.254" layer="94"/>
+<pin name="DIE_PAD" x="7.62" y="-5.08" length="middle" rot="R90"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="SHT21">
+<gates>
+<gate name="G$1" symbol="SHT21_SYMBOL" x="0" y="0"/>
+</gates>
+<devices>
+<device name="!" package="SHT21">
+<connects>
+<connect gate="G$1" pin="DIE_PAD" pad="DIE_PAD"/>
+<connect gate="G$1" pin="GND" pad="2"/>
+<connect gate="G$1" pin="RES" pad="3"/>
+<connect gate="G$1" pin="RES1" pad="4"/>
+<connect gate="G$1" pin="SCL" pad="6"/>
+<connect gate="G$1" pin="SDA" pad="1"/>
+<connect gate="G$1" pin="VDD" pad="5"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -1099,7 +1071,7 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 </class>
 </classes>
 <parts>
-<part name="U$1" library="sensors" deviceset="SHT21" device="SHT21"/>
+<part name="U$1" library="integrated_circuits" deviceset="SHT21" device="!"/>
 <part name="C1" library="passive_components" deviceset="CAP" device="0805-CAP" value="10 uF"/>
 <part name="JP2" library="SparkFun-Connectors" deviceset="M04" device="PTH"/>
 <part name="JP1" library="SparkFun-Connectors" deviceset="M04" device="PTH"/>
