@@ -271,7 +271,6 @@ S-PVQFN-N20</description>
 <text x="-2.3" y="-3.25" size="0.8128" layer="25">&gt;VALUE</text>
 <text x="-2.3" y="-3.25" size="0.8128" layer="51">&gt;VALUE</text>
 <text x="-2" y="2.3" size="0.8128" layer="51">&gt;NAME</text>
-<smd name="21@0" x="0" y="0" dx="1" dy="1" layer="1" stop="no" thermals="no" cream="no"/>
 <smd name="8" x="1.795" y="0" dx="0.25" dy="0.71" layer="1" rot="R90" stop="no"/>
 <polygon width="0" layer="31" spacing="0.05">
 <vertex x="1.44" y="-0.14"/>
@@ -469,10 +468,6 @@ S-PVQFN-N20</description>
 <vertex x="-1.44" y="0.79" curve="90"/>
 <vertex x="-1.23" y="1" curve="90"/>
 </polygon>
-<pad name="21@1" x="0" y="0.5" drill="0.2" diameter="0.3" stop="no" thermals="no"/>
-<pad name="21@2" x="0.5" y="0" drill="0.2" diameter="0.3" stop="no" thermals="no"/>
-<pad name="21@3" x="0" y="-0.5" drill="0.2" diameter="0.3" stop="no" thermals="no"/>
-<pad name="21@4" x="-0.5" y="0" drill="0.2" diameter="0.3" stop="no" thermals="no"/>
 </package>
 <package name="ADXL362-1:1">
 <rectangle x1="-1.5875" y1="-1.4605" x2="1.5875" y2="-1.4351" layer="200"/>
@@ -983,30 +978,30 @@ S-PVQFN-N20</description>
 <pin name="DIE_PAD" x="7.62" y="-5.08" length="middle" rot="R90"/>
 </symbol>
 <symbol name="BQ25570">
-<pin name="VSS2" x="15.24" y="15.24" length="middle" rot="R180"/>
-<pin name="VOUT" x="15.24" y="10.16" length="middle" rot="R180"/>
-<pin name="VBAT_OK" x="15.24" y="5.08" length="middle" rot="R180"/>
-<pin name="VOUT_SET" x="15.24" y="0" length="middle" rot="R180"/>
-<pin name="OK_PROG" x="15.24" y="-5.08" length="middle" rot="R180"/>
-<pin name="OK_HYST" x="0" y="-20.32" length="middle" rot="R90"/>
-<pin name="NC1" x="-5.08" y="-20.32" length="middle" rot="R90"/>
-<pin name="VRDIV" x="-10.16" y="-20.32" length="middle" rot="R90"/>
-<pin name="VBAT_OV" x="-15.24" y="-20.32" length="middle" rot="R90"/>
-<pin name="VOUT_EN" x="-20.32" y="-20.32" length="middle" rot="R90"/>
-<pin name="EN" x="-35.56" y="-5.08" length="middle"/>
-<pin name="VREF_SAMP" x="-35.56" y="0" length="middle"/>
-<pin name="VOC_SAMP" x="-35.56" y="5.08" length="middle"/>
-<pin name="VIN_DC" x="-35.56" y="10.16" length="middle"/>
-<pin name="VSS1" x="-35.56" y="15.24" length="middle"/>
-<pin name="LBOOST" x="-20.32" y="30.48" length="middle" rot="R270"/>
-<pin name="VSTOR" x="-15.24" y="30.48" length="middle" rot="R270"/>
-<pin name="VBAT" x="-10.16" y="30.48" length="middle" rot="R270"/>
-<pin name="NC2" x="-5.08" y="30.48" length="middle" rot="R270"/>
-<pin name="LBUCK" x="0" y="30.48" length="middle" rot="R270"/>
-<wire x1="-30.48" y1="-15.24" x2="10.16" y2="-15.24" width="0.254" layer="94"/>
-<wire x1="10.16" y1="-15.24" x2="10.16" y2="25.4" width="0.254" layer="94"/>
-<wire x1="10.16" y1="25.4" x2="-30.48" y2="25.4" width="0.254" layer="94"/>
-<wire x1="-30.48" y1="25.4" x2="-30.48" y2="-15.24" width="0.254" layer="94"/>
+<pin name="VSS2" x="22.86" y="5.08" length="middle" rot="R180"/>
+<pin name="VOUT" x="22.86" y="2.54" length="middle" rot="R180"/>
+<pin name="VBAT_OK" x="22.86" y="0" length="middle" rot="R180"/>
+<pin name="VOUT_SET" x="22.86" y="-2.54" length="middle" rot="R180"/>
+<pin name="OK_PROG" x="22.86" y="-5.08" length="middle" rot="R180"/>
+<pin name="OK_HYST" x="5.08" y="-22.86" length="middle" rot="R90"/>
+<pin name="NC1" x="2.54" y="-22.86" length="middle" rot="R90"/>
+<pin name="VRDIV" x="0" y="-22.86" length="middle" rot="R90"/>
+<pin name="VBAT_OV" x="-2.54" y="-22.86" length="middle" rot="R90"/>
+<pin name="VOUT_EN" x="-5.08" y="-22.86" length="middle" rot="R90"/>
+<pin name="EN" x="-22.86" y="-5.08" length="middle"/>
+<pin name="VREF_SAMP" x="-22.86" y="-2.54" length="middle"/>
+<pin name="VOC_SAMP" x="-22.86" y="0" length="middle"/>
+<pin name="VIN_DC" x="-22.86" y="2.54" length="middle"/>
+<pin name="VSS1" x="-22.86" y="5.08" length="middle"/>
+<pin name="LBOOST" x="-5.08" y="20.32" length="middle" rot="R270"/>
+<pin name="VSTOR" x="-2.54" y="20.32" length="middle" rot="R270"/>
+<pin name="VBAT" x="0" y="20.32" length="middle" rot="R270"/>
+<pin name="NC2" x="2.54" y="20.32" length="middle" rot="R270"/>
+<pin name="LBUCK" x="5.08" y="20.32" length="middle" rot="R270"/>
+<wire x1="-17.78" y1="-17.78" x2="17.78" y2="-17.78" width="0.254" layer="94"/>
+<wire x1="17.78" y1="-17.78" x2="17.78" y2="15.24" width="0.254" layer="94"/>
+<wire x1="17.78" y1="15.24" x2="-17.78" y2="15.24" width="0.254" layer="94"/>
+<wire x1="-17.78" y1="15.24" x2="-17.78" y2="-17.78" width="0.254" layer="94"/>
 </symbol>
 <symbol name="BQ25570-1">
 <description>TI bq25570</description>
@@ -1103,7 +1098,7 @@ S-PVQFN-N20</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="BQ25570" prefix="U">
+<deviceset name="BQ25570-1" prefix="U">
 <description>TEXAS INSTRUMENTS
 BQ25570 - VQFN20
 
@@ -1121,7 +1116,6 @@ http://www.ti.com/lit/ds/symlink/bq25570.pdf</description>
 <connect gate="G$1" pin="NC2" pad="17"/>
 <connect gate="G$1" pin="OK_HYST" pad="10"/>
 <connect gate="G$1" pin="OK_PROG" pad="11"/>
-<connect gate="G$1" pin="PWPD" pad="21@0 21@1 21@2 21@3 21@4"/>
 <connect gate="G$1" pin="VBAT" pad="18"/>
 <connect gate="G$1" pin="VBAT_OK" pad="13"/>
 <connect gate="G$1" pin="VBAT_OV" pad="7"/>
@@ -1180,6 +1174,40 @@ IC-11297</description>
 <connect gate="G$1" pin="SCLK" pad="P$4"/>
 <connect gate="G$1" pin="VDDIO" pad="P$1"/>
 <connect gate="G$1" pin="VS" pad="P$14"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="BQ25570">
+<gates>
+<gate name="G$1" symbol="BQ25570" x="10.16" y="-5.08"/>
+</gates>
+<devices>
+<device name="" package="BQ25570">
+<connects>
+<connect gate="G$1" pin="EN" pad="5"/>
+<connect gate="G$1" pin="LBOOST" pad="20"/>
+<connect gate="G$1" pin="LBUCK" pad="16"/>
+<connect gate="G$1" pin="NC1" pad="9"/>
+<connect gate="G$1" pin="NC2" pad="17"/>
+<connect gate="G$1" pin="OK_HYST" pad="10"/>
+<connect gate="G$1" pin="OK_PROG" pad="11"/>
+<connect gate="G$1" pin="VBAT" pad="18"/>
+<connect gate="G$1" pin="VBAT_OK" pad="13"/>
+<connect gate="G$1" pin="VBAT_OV" pad="7"/>
+<connect gate="G$1" pin="VIN_DC" pad="2"/>
+<connect gate="G$1" pin="VOC_SAMP" pad="3"/>
+<connect gate="G$1" pin="VOUT" pad="14"/>
+<connect gate="G$1" pin="VOUT_EN" pad="6"/>
+<connect gate="G$1" pin="VOUT_SET" pad="12"/>
+<connect gate="G$1" pin="VRDIV" pad="8"/>
+<connect gate="G$1" pin="VREF_SAMP" pad="4"/>
+<connect gate="G$1" pin="VSS1" pad="1"/>
+<connect gate="G$1" pin="VSS2" pad="15"/>
+<connect gate="G$1" pin="VSTOR" pad="19"/>
 </connects>
 <technologies>
 <technology name=""/>
